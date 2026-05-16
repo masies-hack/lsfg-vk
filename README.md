@@ -3,14 +3,50 @@ Lossless Scaling is a Windows-exclusive app with the goal of bringing frame gene
 
 lsfg-vk brings this frame generation to Linux users by acting as a Vulkan layer inbetween your game and your graphics card.
 
->[!TIP]
-> **This is a pre-release**. We are still ironing out the last few issues before finally releasing a first version, so beware of any issues you encounter on the way and report them via GitHub issues or the Discord.
+lsfg-vk modification for devices with older Vulkan 1.2 drivers
+Specific modification for TegraX1 Nintendo Switch
 
-## Installation
+------------------------------------------------------------------------------------
 
-lsfg-vk can run on a variety of Linux distributions:
-- Click [here](https://github.com/PancakeTAS/lsfg-vk/releases) to download lsfg-vk for your distribution
-- Follow [this guide](https://github.com/PancakeTAS/lsfg-vk/wiki/Installation-Guide) if you any more help.
+Build instructions
+
+debian
+sudo apt install qt6-qpa-plugins libqt6quick6 qml6-module-qtquick-controls qml6-module-qtquick-layouts qml6-module-qtquick-window qml6-module-qtquick-dialogs qml6-module-qtqml-workerscript qml6-module-qtquick-templates qml6-module-qt-labs-folderlistmodel git curl llvm clang clang-tools clang-tidy cmake ninja-build pkg-config libvulkan-dev mesa-common-dev qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools qt6-declarative-dev qt6-declarative-dev-tools
+
+fedora
+sudo dnf install qt6-qtdeclarative qt6-qtbase
+
+Arch
+sudo pacman -S qt6-declarative qt6-base
+----------------------------------------------------------------------------------
+git clone https://github.com/masies-hack/lsfg-vk.git
+cd lsfg-vk/
+
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=On
+
+cmake --build build -j$(nproc)
+sudo cmake --install build
+----------------------------------------------------------------------------------
+edit
+/usr/share/vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json
+Modifi line
+"library_path": "liblsfg-vk.so",
+for
+"library_path": "/usr/local/lib/liblsfg-vk.so",
+--------------------------------------------------------------------------------
+sudo ldconfig
+--------------------------------------------------------------------------------
+first launch has a dll error
+VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
+------------------------------------------------------------
+on
+~/.config/lsfg-vk/conf.toml
+edit, descomentar la línea de la ruta del Lossless.dll
+especific Lossless.dll path
+------------------------------------------------------------
+then again
+VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
+it must work
 
 Once installed, open up the lsfg-vk Configuration Window which should hopefully appear in your application menu.
 
