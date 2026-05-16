@@ -20,6 +20,7 @@ Arch
 sudo pacman -S qt6-declarative qt6-base
 
 git clone https://github.com/masies-hack/lsfg-vk.git
+
 cd lsfg-vk/
 
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=On
