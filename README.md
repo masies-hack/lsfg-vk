@@ -28,26 +28,35 @@ cmake --build build -j$(nproc)
 sudo cmake --install build
 
 edit
+
 /usr/share/vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json
+
 Modifi line
+
 "library_path": "liblsfg-vk.so",
+
 for
+
 "library_path": "/usr/local/lib/liblsfg-vk.so",
 
 sudo ldconfig
 
 first launch has a dll error
+
 VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
 
 on
 ~/.config/lsfg-vk/conf.toml
-edit, descomentar la línea de la ruta del Lossless.dll
+
+edit, uncoment Lossless.dll path line
 especific Lossless.dll path
 
 then again
-VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
-it must work
 
+VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
+
+it must work
+-------------------------------------------------------------------------
 Once installed, open up the lsfg-vk Configuration Window which should hopefully appear in your application menu.
 
 Please see the [Wiki](https://github.com/PancakeTAS/lsfg-vk/wiki) for more information and join the [Discord](https://discord.gg/losslessscaling) for help (needs Steam verification).
