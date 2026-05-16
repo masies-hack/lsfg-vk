@@ -11,14 +11,17 @@ Specific modification for TegraX1 Nintendo Switch
 Build instructions
 
 debian
+
 sudo apt install qt6-qpa-plugins libqt6quick6 qml6-module-qtquick-controls qml6-module-qtquick-layouts qml6-module-qtquick-window qml6-module-qtquick-dialogs qml6-module-qtqml-workerscript qml6-module-qtquick-templates qml6-module-qt-labs-folderlistmodel git curl llvm clang clang-tools clang-tidy cmake ninja-build pkg-config libvulkan-dev mesa-common-dev qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools qt6-declarative-dev qt6-declarative-dev-tools
 
 fedora
+
 sudo dnf install qt6-qtdeclarative qt6-qtbase
 
 Arch
-sudo pacman -S qt6-declarative qt6-base
 
+sudo pacman -S qt6-declarative qt6-base
+_________________________________________________________________
 git clone https://github.com/masies-hack/lsfg-vk.git
 
 cd lsfg-vk/
@@ -26,8 +29,9 @@ cd lsfg-vk/
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=On
 
 cmake --build build -j$(nproc)
-sudo cmake --install build
 
+sudo cmake --install build
+_______________________________________________________________
 edit
 
 /usr/share/vulkan/implicit_layer.d/VkLayer_LS_frame_generation.json
@@ -40,24 +44,26 @@ for
 
 "library_path": "/usr/local/lib/liblsfg-vk.so",
 
+____________________________________________________________
 sudo ldconfig
 
 first launch has a dll error
 
 VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
-
+___________________________________________________________
 on
+
 ~/.config/lsfg-vk/conf.toml
 
 edit, uncoment Lossless.dll path line
 especific Lossless.dll path
-
+____________________________________________________________
 then again
 
 VK_INSTANCE_LAYERS=VK_LAYER_LSVK_frame_generation vkcube
 
 it must work
--------------------------------------------------------------------------
+____________________________________________________________
 Once installed, open up the lsfg-vk Configuration Window which should hopefully appear in your application menu.
 
 Please see the [Wiki](https://github.com/PancakeTAS/lsfg-vk/wiki) for more information and join the [Discord](https://discord.gg/losslessscaling) for help (needs Steam verification).
