@@ -1,5 +1,7 @@
 # lsfg-vk
-Original Progect https://github.com/PancakeTAS/lsfg-vk.git
+
+Original Progect https://github.com/PancakeTAS/lsfg-vk
+
 Lossless Scaling is a Windows-exclusive app with the goal of bringing frame generation (among other features) to every single game or app.
 
 lsfg-vk brings this frame generation to Linux users by acting as a Vulkan layer inbetween your game and your graphics card.
